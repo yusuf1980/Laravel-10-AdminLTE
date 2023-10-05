@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +27,13 @@ Auth::routes([
     'verify' => false, // Email Verification Routes...
   ]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+  Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::resource('users', UserController::class);
+        Route::resource('categories', CategoryController::class);
+        Route::resource('posts', PostController::class);
+        Route::resource('pages', PageController::class);
+    });
+});

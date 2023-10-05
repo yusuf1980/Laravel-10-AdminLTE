@@ -26,7 +26,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="../widgets.html" class="nav-link">
+            <a href="{{route('users.index')}}" class="nav-link {{ request()->segment(2) == 'users' ? 'active' : '' }}">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 User
@@ -62,6 +62,16 @@
               <i class="nav-icon fas fa-list"></i>
               <p>
                 News Category
+                {{-- <span class="right badge badge-danger">New</span> --}}
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="../widgets.html" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Page
                 {{-- <span class="right badge badge-danger">New</span> --}}
               </p>
             </a>
