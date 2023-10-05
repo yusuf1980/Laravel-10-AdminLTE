@@ -1,5 +1,13 @@
 @extends('layouts.admin')
 
+@section('title-content')
+Dashboard
+@endsection
+
+@section('breadcrumb')
+<li class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></li>
+@endsection
+
 @section('content')
 <div class="card">
     <div class="card-header">
