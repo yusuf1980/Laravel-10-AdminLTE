@@ -58,7 +58,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="../widgets.html" class="nav-link">
+            <a href="{{route('categories.index')}}" class="nav-link {{ request()->segment(2) == 'categories' ? 'active' : '' }}">
               <i class="nav-icon fas fa-list"></i>
               <p>
                 News Category

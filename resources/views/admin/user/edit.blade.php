@@ -20,7 +20,7 @@
                 @method('put')
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-label">Nama Lengkap</label>
+                        <label class="form-label">Name</label>
                         <input type="text" name="name"
                             class="form-control @error('name') is-invalid @enderror"value="{{ $user->name }}"
                             autocomplete="name">

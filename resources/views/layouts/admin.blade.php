@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/admin.scss', 'resources/js/admin.js'])
+    @yield('css')
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -40,6 +41,7 @@
             </div>
         </div>
     </div>
+    @yield('js')
 </body>
 
 </html>

@@ -90,7 +90,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $user->delete();
-        toastr()->success('Data user berhasil dihapus');
-        return redirect()->route('user.index');
+        toastr()->success('Data user '.$user->name.' berhasil dihapus');
+        return redirect()->route('users.index');
     }
 }
