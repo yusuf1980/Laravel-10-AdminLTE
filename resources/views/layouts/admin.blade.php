@@ -4,15 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
     @vite(['resources/sass/admin.scss', 'resources/js/admin.js'])
-    @yield('css')
+    @stack('css')
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -33,7 +28,7 @@
                           </ol>
                         </div>
                       </div>
-                    </div><!-- /.container-fluid -->
+                    </div>
                   </section>
                   <section class="content">
                     @yield('content')
@@ -41,7 +36,7 @@
             </div>
         </div>
     </div>
-    @yield('js')
+    @stack('js')
 </body>
 
 </html>

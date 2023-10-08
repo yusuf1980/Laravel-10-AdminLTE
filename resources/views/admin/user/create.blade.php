@@ -19,42 +19,28 @@
                 @csrf
                 @method('post')
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label">Name</label>
-                        <input type="text" name="name"
-                            class="form-control @error('name') is-invalid @enderror"value="{{ old('name') }}"
-                            autocomplete="name" autofocus>
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
+                    @include('admin.components.text', [
+                        'title' => 'Name',
+                        'name' => 'name',
+                        'type' => 'text',
+                        'item' => null,
+                    ])
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input type="email" name="email"
-                            class="form-control @error('email') is-invalid @enderror"value="{{ old('email') }}"
-                            autocomplete="email" autofocus>
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
+                    @include('admin.components.text', [
+                        'title' => 'Email',
+                        'name' => 'email',
+                        'type' => 'email',
+                        'item' => null,
+                    ])
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                            >
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
+                    @include('admin.components.text', [
+                        'title' => 'Password',
+                        'name' => 'password',
+                        'type' => 'password',
+                        'item' => null,
+                    ])
                 </div>
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-success">Save</button>

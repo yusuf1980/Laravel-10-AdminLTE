@@ -19,30 +19,20 @@
                 @csrf
                 @method('put')
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label">Name</label>
-                        <input type="text" name="name"
-                            class="form-control @error('name') is-invalid @enderror"value="{{ $user->name }}"
-                            autocomplete="name">
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
+                    @include('admin.components.text', [
+                        'title' => 'Name',
+                        'name' => 'name',
+                        'type' => 'text',
+                        'item' => $user->name,
+                    ])
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input type="email" name="email"
-                            class="form-control @error('email') is-invalid @enderror"value="{{ $user->email }}"
-                            autocomplete="email" >
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
+                    @include('admin.components.text', [
+                        'title' => 'Email',
+                        'name' => 'email',
+                        'type' => 'email',
+                        'item' => $user->email,
+                    ])
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">

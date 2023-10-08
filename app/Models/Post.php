@@ -42,4 +42,10 @@ class Post extends Model
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
+
+    public function getPublishedDateAttribute($value)
+    {
+        $published = explode('-', $value);
+        return $published[2].'-'.$published[1].'-'.$published[0];
+    }
 }

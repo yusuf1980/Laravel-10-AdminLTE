@@ -33,7 +33,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{ request()->segment(2) == 'posts' ? 'menu-is-opening menu-open' : '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -44,13 +44,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../layout/top-nav.html" class="nav-link">
+                <a href="{{route('posts.index')}}" class="nav-link {{ request()->is('admin/posts')? 'active' : '' }}" >
                   <i class="far fa-circle nav-icon"></i>
                   <p>All News</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../layout/top-nav-sidebar.html" class="nav-link">
+                <a href="{{route('posts.create')}}" class="nav-link {{ request()->is('admin/posts/create')? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Create News</p>
                 </a>

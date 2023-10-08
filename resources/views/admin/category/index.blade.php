@@ -21,17 +21,12 @@
                             @csrf
                             @method('post')
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="form-label">Category Name</label>
-                                    <input type="text" name="name"
-                                        class="form-control @error('name') is-invalid @enderror"value="{{ old('name') }}"
-                                        autocomplete="name">
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                @include('admin.components.text', [
+                                    'title' => 'Category Name',
+                                    'name' => 'name',
+                                    'type' => 'text',
+                                    'item' => null
+                                ])
                             </div>
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-success">Save</button>
