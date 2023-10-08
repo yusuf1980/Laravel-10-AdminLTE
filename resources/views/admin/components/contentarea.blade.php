@@ -7,7 +7,7 @@
     <div id="editor">
         {!! old($name, $item) !!}
     </div>
-    <textarea id="detail" name="{{$name}}" style="display: none" class="form-control @error($name) is-invalid @enderror">{{ old($name, $item) }}</textarea>
+    <textarea id="detail" name="{{$name}}" style="display: none" class="form-control @error($name) is-invalid @enderror">{{ old($name) }}</textarea>
     @error($name)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -16,9 +16,8 @@
 </div>
 
 @push('js')
-<script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="{{asset('assets/quill-image-resize-module.min.js')}}"></script>
-
     <script>
         var toolbarOptions = ['bold', 'italic', 'underline', 'strike'];
         var quill = new Quill('#editor', {

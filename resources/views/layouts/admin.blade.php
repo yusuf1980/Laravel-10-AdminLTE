@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <script src="{{asset('assets/jquery/jquery.min.js')}}"></script>
+    {{-- <script src="{{asset('assets/bootstrap/js/bootstrap.bundle.min.js')}}"></script> --}}
+    <script src="{{asset('assets/admin/adminlte.min.js')}}"></script>
     @vite(['resources/sass/admin.scss', 'resources/js/admin.js'])
     @stack('css')
 </head>
