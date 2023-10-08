@@ -22,10 +22,18 @@ class PostsDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addColumn('featured_image', function ($row) {
+                $img = 'no image';
+                if ($row->image) {
+                    $url = asset('/images/posts/' . $row->image);
+                    $img = '<img src="' . $url . '" width="100" align="center" >';
+                }
+                return $img;
+            })
             ->addColumn('action', function ($row) {
                 $updateButton = "<a href='" . route('posts.edit', $row->id) . "' class='btn btn-sm btn-info'><i class='fas fa-pen'></i></a>";
                 $deleteButton = "<form method='post' class='d-inline' action='" . route('posts.destroy', [$row->id]) . "'>
-                    <input type='hidden' name='_token' value='".csrf_token()."'>
+                    <input type='hidden' name='_token' value='" . csrf_token() . "'>
                     <input type='hidden' name='_method' value='DELETE'>
                     <button type='submit' onclick='btnDelete()'
                         class='btn btn-danger btn-sm'>Del</button>
@@ -42,7 +50,8 @@ class PostsDataTable extends DataTable
                 else
                     return 'Draft';
             })
-            ->setRowId('id');
+            ->rawColumns(['action', 'featured_image']);
+        // ->setRowId('id');
     }
 
     /**
@@ -74,8 +83,12 @@ class PostsDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-
             Column::make('id'),
+            Column::computed('featured_image')
+                ->exportable(false)
+                ->printable(false)
+                ->width(100)
+                ->addClass('text-center'),
             Column::make('title'),
             Column::computed('status'),
             Column::computed('category'),

@@ -15,7 +15,7 @@
             <h3 class="card-title">Add News</h3>
         </div>
         <div class="card-body">
-            <form class="g-3 mx-3 row" method="post" action="{{ route('posts.store') }}">
+            <form class="g-3 mx-3 row" method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                 @csrf
                 @method('post')
                 <div class="col-md-12">
@@ -65,8 +65,16 @@
                         'item' => null,
                     ])
                 </div>
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-success">Save</button>
+                <div class="col-md-5">
+                    @include('admin.components.image', [
+                        'title' => 'Feature Image',
+                        'name' => 'image',
+                        'type' => 'file',
+                        'item' => null,
+                    ])
+                </div>
+                <div class="col-md-12 py-4">
+                    <button type="submit" class="btn btn-success btn-block">Save</button>
                 </div>
             </form>
         </div>

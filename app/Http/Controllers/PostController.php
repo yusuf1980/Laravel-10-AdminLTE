@@ -38,10 +38,8 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        // dd($request->all());
         $published_date = $this->parseDate($request->published_date);
         $user_id = Auth::user()->id;
-        // dd($published_date);
 
         $post = Post::create([
             'title' => $request->title,
@@ -95,9 +93,7 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, string $id)
     {
-
         $published_date = $this->parseDate($request->published_date);
-        // dd($published_date);
         $post = Post::findOrFail($id);
         if ($request->hasFile('image')) {
             $filename = $request->image->getClientOriginalName();
@@ -139,10 +135,20 @@ class PostController extends Controller
 
     public function parseDate($date)
     {
-        // $published = date_parse($date);
-        // $published_date = $published['year'].'-'.$published['month'].'-'.$published['day'];
         $published = explode('-', $date);
         $published_date = $published[2].'-'.$published[1].'-'.$published[0];
         return  $published_date;
+    }
+
+    public function deleteImage($id)
+    {
+        $post = Post::findOrFail($id);
+        if(!empty($post->image)){
+            unlink(public_path('/images/posts/'.$post->image));
+            $post->image = null;
+            $post->save();
+        }
+        toastr()->success('Image removed!');
+        return redirect()->back();
     }
 }

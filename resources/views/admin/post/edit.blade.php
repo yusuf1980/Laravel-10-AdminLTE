@@ -15,7 +15,7 @@
             <h3 class="card-title">Edit News</h3>
         </div>
         <div class="card-body">
-            <form class="g-3 mx-3 row" method="post" action="{{ route('posts.update', $post->id) }}">
+            <form class="g-3 mx-3 row" method="post" action="{{ route('posts.update', $post->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="col-md-12">
@@ -65,12 +65,43 @@
                         'item' => $post->content,
                     ])
                 </div>
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-success">Save</button>
+                <div class="col-md-6">
+                    @include('admin.components.image', [
+                        'title' => 'Feature Image',
+                        'name' => 'image',
+                        'type' => 'file',
+                        'item' => null,
+                    ])
                 </div>
+                <div class="col-md-6">
+                    @if($post->image)
+                    <img src="{{ asset('images/posts/'.$post->image)}}" style="width: 300px; border: 5px solid #eee"  />
+                    <button type="button" class="btn btn-danger" onclick="removeImage()">Remove Image</button>
+                    @else
+                    No Image
+                    @endif
+                </div>
+                <div class="col-md-12 py-4">
+                    <button type="submit" class="btn btn-success btn-block">Save</button>
+                </div>
+            </form>
+            <form method="post" action="{{route('posts.deleteimage', $post->id)}}" id="remove-image">
+                @csrf
+                @method('post')
             </form>
         </div>
     </div>
 @endsection
+
+@push('js')
+<script>
+
+function removeImage() {
+    const imgForm = document.getElementById('remove-image');
+    imgForm.submit();
+    console.log(imgForm);
+}
+</script>
+@endpush
 
 
